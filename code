@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+
+namespace ConsoleApp7
+{
+    class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+            List<string> accounts = new List<string>();
+            List<string> hashtags = new List<string>();
+            int accountsCounter = 0;
+            int hashtagCounter = 0;
+            string text = "System Five, a 4energy group company, are proud to have been selected to partner with @Pinnacle who have an extensive history in providing facilities management within the education sector to provide maintenance for Nightingale School and The oTTo in Hackney #4egServiceInsight ";
+            string text2 = "Al Hejaz International School -Girls Section Congratulations to our studentsHamza Shaban Jana Moheyeldin #مدرستي_تبرمج  #HourofCode  #وزارة_التعليم# مكتب_تعليم_وسط# مدرسة_الحجاز_العالمية @MOE_JDH @moe_gov_sa @MOE_JDH_20 @AlhejazS";
+            token(text, ref accounts, ref hashtags, ref accountsCounter, ref hashtagCounter);
+            Console.WriteLine("There are {0} account:", accountsCounter);
+            foreach (string account in accounts)
+                Console.Write("{0}, ", account);
+            Console.WriteLine("");
+            Console.WriteLine("There are {0} hashtag:", hashtagCounter);
+            foreach (string hashtag in hashtags)
+                Console.Write("{0}, ", hashtag);
+
+        }
+
+
+        static void token(String tweet, ref List<string> accounts, ref List<string> hashtags, ref int accountsCounter, ref int hashtagCounter)
+        {
+
+
+            string[] tweetList = tweet.Split(" ");
+            foreach (string word in tweetList)
+            {
+                if (word.StartsWith('@'))
+                {
+                    accounts.Add(word);
+                    accountsCounter++;
+
+                }
+
+                if (word.StartsWith('#'))
+                {
+                    hashtags.Add(word);
+                    hashtagCounter++;
+                }
+
+            }
+        }
+        
+    }
+ }
